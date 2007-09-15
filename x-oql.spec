@@ -4,7 +4,7 @@
 %define	oname	X-OQL
 %define	jarname	xoql
 %define	version	20070202
-%define	release	%mkrel 2
+%define	release	%mkrel 3
 %define	jarlibs	cdqa antlr
 
 Name:		%{name}
@@ -22,8 +22,6 @@ Requires:	%{jarlibs}
 Provides:	%{oname} = %{version}-%{release}
 Provides:	%{jarname} = %{version}-%{release}
 %if %{gcj_support}
-Requires(post):	java-gcj-compat
-Requires(postun):	java-gcj-compat
 BuildRequires:	java-gcj-compat-devel
 %else
 BuildArch:      noarch
