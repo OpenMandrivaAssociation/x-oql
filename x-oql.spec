@@ -4,7 +4,7 @@
 %define	oname	X-OQL
 %define	jarname	xoql
 %define	version	20070202
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 %define	jarlibs	cdqa antlr
 
 Name:		%{name}
@@ -17,7 +17,7 @@ Url:		http://forge.objectweb.org/projects/activexml/
 # from cvs
 Source0:	%{name}-%{version}.tar.lzma
 BuildRequires:	lzma
-BuildRequires:	jpackage-utils java-devel ant %{jarlibs}
+BuildRequires:	java-rpmbuild java-devel ant %{jarlibs}
 Requires:	%{jarlibs}
 Provides:	%{oname} = %{version}-%{release}
 Provides:	%{jarname} = %{version}-%{release}
