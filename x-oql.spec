@@ -4,7 +4,7 @@
 %define	oname	X-OQL
 %define	jarname	xoql
 %define	version	20070202
-%define	release	%mkrel 8
+%define	release	9
 %define	jarlibs	cdqa antlr
 
 Name:		%{name}
@@ -18,6 +18,7 @@ Url:		http://forge.objectweb.org/projects/activexml/
 Source0:	%{name}-%{version}.tar.lzma
 BuildRequires:	lzma
 BuildRequires:	java-rpmbuild java-devel ant %{jarlibs}
+BuildRequires:	locales-en
 Requires:	%{jarlibs}
 Provides:	%{oname} = %{version}-%{release}
 Provides:	%{jarname} = %{version}-%{release}
@@ -26,7 +27,6 @@ BuildRequires:	java-gcj-compat-devel
 %else
 BuildArch:      noarch
 %endif
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 %{oname}
@@ -44,6 +44,7 @@ Javadoc for %{oname}.
 rm -rf lib
 
 %build
+export LC_ALL=ISO-8859-1
 export CLASSPATH=$(build-classpath %{jarlibs})
 %{ant} -f xoql_build.xml jar javadoc -DDSTAMP=%{version} 
 jar -i build/lib/%{jarname}.jar
@@ -92,4 +93,42 @@ rm -rf %{buildroot}
 %defattr(0644,root,root,0755)
 %{_javadocdir}/%{name}-%{version}
 
+
+
+
+%changelog
+* Wed Sep 09 2009 Thierry Vignaud <tvignaud@mandriva.com> 20070202-8mdv2010.0
++ Revision: 435251
+- rebuild
+
+* Mon Aug 04 2008 Thierry Vignaud <tvignaud@mandriva.com> 20070202-7mdv2009.0
++ Revision: 262644
+- rebuild
+
+* Thu Jul 31 2008 Thierry Vignaud <tvignaud@mandriva.com> 20070202-6mdv2009.0
++ Revision: 257626
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sun Dec 16 2007 Anssi Hannula <anssi@mandriva.org> 20070202-4mdv2008.1
++ Revision: 121057
+- buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+
+* Sat Sep 15 2007 Anssi Hannula <anssi@mandriva.org> 20070202-3mdv2008.0
++ Revision: 87304
+- rebuild to filter out autorequires of GCJ AOT objects
+- remove unnecessary Requires(post) on java-gcj-compat
+
+* Sun Sep 09 2007 Pascal Terjan <pterjan@mandriva.org> 20070202-2mdv2008.0
++ Revision: 82859
+- rebuild
+
+
+* Sat Feb 03 2007 Per Øyvind Karlsen <pkarlsen@mandriva.com> 20070202-1mdv2007.0
++ Revision: 116045
+- fix permissions for gcj libraries
+- Import x-oql
 
