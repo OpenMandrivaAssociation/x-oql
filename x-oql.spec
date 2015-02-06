@@ -4,7 +4,7 @@
 %define	oname	X-OQL
 %define	jarname	xoql
 %define	version	20070202
-%define	release	9
+%define release	10
 %define	jarlibs	cdqa antlr
 
 Name:		%{name}
